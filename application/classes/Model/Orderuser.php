@@ -4,6 +4,4 @@ class Model_Orderuser extends ORM
 {
    protected $_table_name = 'order_users';
 
-
-
 }

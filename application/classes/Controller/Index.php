@@ -36,16 +36,14 @@ class Controller_Index extends Controller_DefaultTemplate {
         if(!$this->request->is_ajax()){
             return;
         }
-        $orders = ORM::factory('Order')
-            ->where('site_id', '=', $this->request->post('site_id'))
-            ->find_all();
-        $site = ORM::factory('Site', $this->request->post('site_id'));
-        $results = array();
-        $results["site"]["Counter"] = $site->YaCounter;
-        foreach ($orders as $order){
+        $order_model = new Model_Order();
+            /*->where('site_id', '=', $this->request->post('site_id'))
+            ->find_all();*/
+        $orders = $order_model->get_results($this->request->post('site_id'));
+/*        foreach ($orders as $order){
             print_r($order->user->id);echo '<hr>';
-        }
+        }*/
+        echo '<pre>';print_r($orders);echo '</pre>';
 
-        //echo $site->sitename;
     }
 }

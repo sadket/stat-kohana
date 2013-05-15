@@ -19,14 +19,11 @@ class Controller_Auth extends Controller_DefaultTemplate{
                 ->rule('pass', 'not_empty');
             if ($post->check())
             {
-                // try login user
                 if (Auth::instance()->login($post['login'], $post['pass'],""))
                 {
                     HTTP::redirect('/');
                 }
-
             }
-
         }
     }
     public function action_logout()
@@ -34,29 +31,5 @@ class Controller_Auth extends Controller_DefaultTemplate{
         Auth::instance()->logout();
         HTTP::redirect('/');
     }
-    /*public function action_init()
-    {
-        // find current admin user
-        $user = ORM::factory('User', array('username' => 'admin'));
-
-        // if user not founded
-        if ($user->loaded() === FALSE)
-        {
-            // create new admin user
-            $user->values(array(
-                'username' => 'admin',
-                'password' => 'admin',
-                'email' => 'sadket@gmail.com',
-            ))->save();
-
-            // add roles for admin user
-            $user->add('roles', ORM::factory('role', array('name' => 'login')));
-            $user->add('roles', ORM::factory('role', array('name' => 'admin')));
-            return ;
-        }
-
-    }*/
-
-
 
 }
