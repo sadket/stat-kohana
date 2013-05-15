@@ -130,19 +130,26 @@ Route::set('update', 'update')
         'controller' => 'update',
         'action'     => 'index',
     ));
-Route::set('default', '(/<controller>(/<action>(/<id>)))')
-	->defaults(array(
-		'controller' => 'index',
-		'action'     => 'index',
-	));
-Route::set('auth', 'auth')
+Route::set('results', 'results')
     ->defaults(array(
         'controller' => 'index',
-        'action'     => 'auth',
+        'action'     => 'results',
+    ));
+
+
+Route::set('auth', '<action>', array('action' => '(login|logout|init)'))
+    ->defaults(array(
+        'controller' => 'auth',
+        'action'     => 'login',
     ));
 Route::set('hpass', 'hpass')
     ->defaults(array(
         'controller' => 'index',
         'action'     => 'hpass',
+    ));
+Route::set('default', '(/<controller>(/<action>(/<id>)))')
+    ->defaults(array(
+        'controller' => 'index',
+        'action'     => 'index',
     ));
 

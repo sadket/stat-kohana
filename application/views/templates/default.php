@@ -11,6 +11,7 @@
 <body>
 <div class="wrapper">
     <?=$header?>
+    <?=$content?>
 </div>
 
 <?php foreach($scripts as $file) { echo HTML::script($file, NULL, TRUE), "\n"; }?>

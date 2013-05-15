@@ -1,6 +1,6 @@
 <header class="header">
     <div>
-        <a class="btn btn-right btn-danger btn-logout" href="/?logout=yes">Выход</a>
+        <a class="btn btn-right btn-danger btn-logout" href="logout/">Выход</a>
     </div>
     <div class="navbar">
         <div class="navbar-inner">

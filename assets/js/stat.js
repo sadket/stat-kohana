@@ -13,7 +13,7 @@ $(function(){
             e.preventDefault();
             var form = $(this),
                 data = form.serialize();
-                url = 'stat_res.php'
+                url = 'results/'
             $.post(url, data, function(response){
                 $('.results').html(response);                        
             });
@@ -71,14 +71,13 @@ $(function(){
                 $('#sitename').addClass('error-inp');
             }else{
                 var data = $(this).serialize();
-                $.post('add.php', data, function(response){
+                $.post('update/', data, function(response){
                     $('.results').html(response);
-                });    
+
+                });
             }
-        });    
-        
-        
-});        
+        });
+});
 function removeItem(self, id){
     var self = $(self),
         tr = self.closest('tr');

@@ -457,3 +457,15 @@
 2013-05-13 10:33:59 --- EMERGENCY: ErrorException [ 1 ]: Call to undefined method View::header() ~ APPPATH/classes/Controller/Index.php [ 41 ] in :
 2013-05-13 10:33:59 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
 #1 {main} in :
+2013-05-13 15:51:30 --- EMERGENCY: ErrorException [ 1 ]: Class 'Auth_ORM1' not found ~ MODPATH/auth/classes/Kohana/Auth.php [ 37 ] in :
+2013-05-13 15:51:30 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-05-13 16:02:13 --- EMERGENCY: ErrorException [ 1 ]: Class 'Database' not found ~ MODPATH/orm/classes/Kohana/ORM.php [ 317 ] in :
+2013-05-13 16:02:13 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-05-13 16:02:24 --- EMERGENCY: ErrorException [ 1 ]: Class 'Auth_ORM' not found ~ MODPATH/auth/classes/Kohana/Auth.php [ 37 ] in :
+2013-05-13 16:02:24 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :
+2013-05-13 16:17:40 --- EMERGENCY: ErrorException [ 1 ]: Class 'Auth_Gile' not found ~ MODPATH/auth/classes/Kohana/Auth.php [ 37 ] in :
+2013-05-13 16:17:40 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :

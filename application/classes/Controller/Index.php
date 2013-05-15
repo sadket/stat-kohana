@@ -1,41 +1,51 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
 class Controller_Index extends Controller_DefaultTemplate {
+    public function before(){
+        parent::before();
+        if ($this->request->is_ajax()){
+            $this->auto_render = FALSE;
+        }
+    }
 
     public function action_index()
     {
-        $auth = Auth::instance();
-        if($auth->logged_in()){
-            $this->template->title = "Статистика запросов и заявок сайтов-клиентов";
-            $data["heading"] = $this->template->title;
-            $header = View::Factory('templates/header', $data);
-            $this->template->header = $header->render();
-        }else{
-            http_redirect('auth/');
+        if(!Auth::instance()->logged_in()){
+            HTTP::redirect('login/');
         }
 
+        $dataForm = array();
+        $sites = ORM::factory('Site');
 
-    }
-    public function action_auth(){
 
-        $auth = Auth::instance();
-
+        $dataForm['sites'] = $sites->find_all();
         $this->template->title = "Статистика запросов и заявок сайтов-клиентов";
-        $data["heading"] = $this->template->title;
-        $header = View::Factory('templates/auth', $data);
+        $dataHeader["heading"] = $this->template->title;
+
+
+        $header = View::Factory('templates/header', $dataHeader);
+        $content = View::Factory('templates/reqform', $dataForm);
+
         $this->template->header = $header->render();
-
-        if(isset($_POST) && isset($_POST["submit"])){
-            $login = Arr::get($_POST, 'login', '');
-            $password = Arr::get($_POST, 'pass', '');
-
-            if($auth->login($login, $password)){
-                http_redirect('/kohana/');
-            };
+        $this->template->content = $content->render();
 
 
-        }
     }
 
+    public function action_results(){
+        if(!$this->request->is_ajax()){
+            return;
+        }
+        $orders = ORM::factory('Order')
+            ->where('site_id', '=', $this->request->post('site_id'))
+            ->find_all();
+        $site = ORM::factory('Site', $this->request->post('site_id'));
+        $results = array();
+        $results["site"]["Counter"] = $site->YaCounter;
+        foreach ($orders as $order){
+            print_r($order->user->id);echo '<hr>';
+        }
 
+        //echo $site->sitename;
+    }
 }
